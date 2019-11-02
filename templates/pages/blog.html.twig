@@ -1,0 +1,25 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+   <div class="container">
+      <h3 class="title">Category for goods</h3>
+      <table class="table table-striped">
+         <thead>
+         <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">DESCRIPTION</th>
+         </tr>
+         </thead>
+         <tbody>
+         {% for cat in categories %}
+         <tr>
+            <th scope="row">{{ cat.id }}</th>
+            <td>{{ cat.name }}</td>
+            <td>{{ cat.description }}</td>
+         </tr>
+         {% endfor %}
+         </tbody>
+      </table>
+   </div>
+{% endblock %}

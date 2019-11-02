@@ -25,23 +25,12 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     return new Response($app['twig']->resolveTemplate($templates)->render(array('code' => $code)), $code);
 });
 
-$blogPosts = array(
-    1 => array(
-        'date'      => '2011-03-29',
-        'author'    => 'igorw',
-        'title'     => 'Using Silex',
-        'body'      => '...',
-    ),
-);
+$app->get('/blog', function () use ($app) {
 
-$app->get('/blog', function () use ($blogPosts) {
-    $output = '';
-    foreach ($blogPosts as $post) {
-        $output .= $post['title'];
-        $output .= '<br />';
-        $output .= $post['date'];
-        $output .= '<br />';
-    }
+    $categories = $app['db']->fetchAll('SELECT * FROM category');
 
-    return $output;
+    return $app['twig']->render('pages/blog.html.twig', array(
+        'categories' => $categories
+    ));
+
 });

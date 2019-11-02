@@ -17,4 +17,14 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     return $twig;
 });
 
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+    'db.options' => array(
+        'driver' => 'pdo_mysql',
+        'dbname' => 'yii2_tz_2',
+        'user' => 'root',
+        'password' => 'test02156',
+        'host' => 'localhost',
+    ),
+));
+
 return $app;
